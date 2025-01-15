@@ -317,4 +317,3 @@ def change_password(request):
 def logout_view(request):
     logout(request)
     return redirect('landing_page') 
-
