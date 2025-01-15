@@ -302,7 +302,7 @@ class MyOrdersView(LoginRequiredMixin, ListView):
 @login_required
 def change_password(request):
     if request.method == 'POST':
-        form = SetPasswordForm(user=request.user, data=request.POST)
+        form = PasswordChangeForm(user=request.user, data=request.POST)
         if form.is_valid():
             form.save()
             messages.success(request, 'Your password has been successfully updated.')
