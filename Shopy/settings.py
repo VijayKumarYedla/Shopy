@@ -60,8 +60,16 @@ WSGI_APPLICATION = 'Shopy.wsgi.application'
 
 # Database configuration using dj-database-url to handle the MySQL URL from Render
 DATABASES = {
-    'default': dj_database_url.config(default=config('DATABASE_URL'))
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': config('DB_NAME'),
+        'USER': config('DB_USER'),
+        'PASSWORD': config('DB_PASSWORD'),
+        'HOST': config('DB_HOST'),  # Ensure this is correct
+        'PORT': config('DB_PORT', default=3306, cast=int),
+    }
 }
+
 
 # Password validation
 AUTH_PASSWORD_VALIDATORS = [
