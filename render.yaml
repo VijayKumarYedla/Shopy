@@ -1,0 +1,11 @@
+services:
+  - type: web
+    name: Shopy
+    env: python
+    buildCommand: pip install -r requirements.txt
+    startCommand: gunicorn zebra.wsgi:application
+    envVars:
+      - key: DJANGO_SECRET_KEY
+        value: YOUR_SECRET_KEY
+      - key: DATABASE_URL
+        value: YOUR_DATABASE_URL
