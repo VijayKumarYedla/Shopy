@@ -14,8 +14,7 @@ SECRET_KEY = config('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = config('DEBUG', default=False, cast=bool)
 
-ALLOWED_HOSTS = ['shopy-4m0v.onrender.com', 'localhost', '127.0.0.1']
-
+ALLOWED_HOSTS = ['shopy-4m0v.onrender.com', 'localhost', '127.0.0.1']  # Add your Render host here
 
 
 # Application definition
@@ -59,7 +58,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'Shopy.wsgi.application'
 
-# Database configuration using dj-database-url to handle the PostgreSQL URL from Render
+# Database configuration using dj-database-url to handle the MySQL URL from Render
 DATABASES = {
     'default': dj_database_url.config(default=config('DATABASE_URL'))
 }
