@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Search Results</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #ff6f00;
+            font-size: 24px;
+            margin-bottom: 20px;
+        }
+        .search-container {
+            display: flex;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        .search-container input {
+            padding: 8px;
+            font-size: 16px;
+            width: 300px;
+            border-radius: 5px;
+            border: 1px solid #ddd;
+            background-color: #333;
+            color: white;
+        }
+        .search-container button {
+            padding: 8px 16px;
+            font-size: 16px;
+            background-color: #00bcd4;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            margin-left: 10px;
+            cursor: pointer;
+        }
+        .search-container button:hover {
+            background-color: #0097a7;
+        }
+        .error-message {
+            color: red;
+            margin-top: 10px;
+            text-align: center;
+        }
+        .product {
+            display: flex;
+            background-color: #1e1e1e;
+            padding: 15px;
+            border-radius: 8px;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+            margin-bottom: 20px;
+            transition: box-shadow 0.3s ease;
+        }
+        .product:hover {
+            box-shadow: 0 6px 12px rgba(0, 0, 0, 0.5);
+        }
+        .product img {
+            max-width: 150px;
+            height: auto;
+            border-radius: 5px;
+            margin-right: 20px;
+        }
+        .product-info {
+            display: flex;
+            flex-direction: column;
+            gap: 10px;
+        }
+        .product-info h4 {
+            margin: 0;
+            font-size: 20px;
+            color: #ff6f00;
+        }
+        .product-info p {
+            margin: 5px 0;
+            color: #bbb;
+        }
+        .product-info .price {
+            font-weight: bold;
+            color: #FFD700;
+        }
+        .no-results {
+            text-align: center;
+            color: #ff6f00;
+            font-size: 18px;
+            margin-top: 20px;
+        }
+    </style>
+    <script>
+        function validateSearch() {
+            const searchInput = document.getElementById("searchInput");
+            const errorMessage = document.getElementById("errorMessage");
+            if (searchInput.value.trim() === "") {
+                errorMessage.textContent = "Please enter something in the search bar.";
+                return false; // Prevent form submission
+            }
+            errorMessage.textContent = ""; // Clear any previous error message
+            return true; // Allow form submission
+        }
+    </script>
+</head>
+<body>
+    <h2>Search Results for "{{ query }}"</h2>
+    <div class="search-container">
+        <form method="GET" action="{% url 'search_results' %}" onsubmit="return validateSearch();">
+            <input type="text" name="query" id="searchInput" placeholder="Search products..." value="{{ query|default:'' }}">
+            <button type="submit">Search</button>
+        </form>
+    </div>
+    <p id="errorMessage" class="error-message"></p>
+
+    <h3>Results:</h3>
+    <div>
+        {% if results %}
+            {% for product in results %}
+                <div class="product">
+                    <img src="{{ product.image.url }}" alt="{{ product.name }} image">
+                    <div class="product-info">
+                        <h4>{{ product.name }}</h4>
+                        <p class="price">Price: ₹{{ product.price }}</p>
+                        <p>Description: {{ product.description }}</p>
+                    </div>
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-results">No results found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

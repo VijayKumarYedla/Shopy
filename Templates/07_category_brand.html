@@ -1,0 +1,28 @@
+<!-- category_brands.html -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>{{ category.name }} - Brands</title>
+</head>
+<body>
+
+    <h1>Brands in {{ category.name }}</h1>
+
+    <div class="brand-list">
+        {% for brand in brands %}
+            <div class="brand-item">
+                <h3>{{ brand.name }}</h3>
+                <!-- Optionally, you can display brand images -->
+            </div>
+        {% endfor %}
+    </div>
+
+    <a href="/">Back to Homepage</a>
+    <h1>{{ category.name }} - Brands</h1>
+
+    
+</body>
+</html>

@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+    <style>
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f3f6; /* Flipkart light background */
+        }
+
+        .login-container {
+            text-align: center;
+            padding: 30px;
+            width: 100%;
+            max-width: 400px;
+            border-radius: 10px;
+            background-color: #ffffff; /* White background */
+            box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15); /* Subtle shadow */
+        }
+
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: #2874f0; /* Flipkart blue for heading */
+        }
+
+        form {
+            display: flex;
+            flex-direction: column; /* Stack input and button vertically */
+            gap: 15px; /* Space between form elements */
+        }
+
+        input[type="text"], input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            font-size: 1em;
+            border: 1px solid #ccc;
+            border-radius: 5px;
+            box-sizing: border-box;
+        }
+
+        button {
+            padding: 12px;
+            font-size: 1.2em;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2874f0; /* Flipkart blue */
+            color: #ffffff; /* White text */
+            transition: background-color 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff9f00; /* Flipkart orange on hover */
+        }
+
+        .error-message {
+            color: red; /* Red for error messages */
+            font-size: 0.9em;
+            margin-bottom: 15px;
+        }
+
+        .info {
+            margin-top: 20px;
+            font-size: 0.9em;
+            color: #555; /* Light gray text for additional info */
+        }
+
+        a {
+            color: #2874f0; /* Flipkart blue for links */
+            text-decoration: none; /* Remove underline from links */
+        }
+
+        a:hover {
+            text-decoration: underline; /* Add underline on hover */
+        }
+    </style>
+</head>
+<body>
+    <div class="login-container">
+        <h1>Login</h1>
+        {% if form.errors %}
+            <p class="error-message">{{ form.errors }}</p>
+        {% endif %}
+        <form method="post">
+            {% csrf_token %}
+            {{ form.as_p }}
+            <button type="submit">Login</button>
+        </form>
+        <div class="info">
+            Don't have an account? <a href="{% url 'signup' %}">Sign Up</a>
+        </div>
+    </div>
+</body>
+</html>
