@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Welcome to Shopy</title>
+    <style>
+        body {
+            margin: 0;
+            font-family: Arial, Helvetica, sans-serif;
+            background-color: #f1f3f6; /* Light background for the whole page */
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+        }
+
+        .container {
+            text-align: center;
+            background-color: #ffffff;
+            padding: 40px;
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Subtle shadow */
+        }
+
+        .welcome-text {
+            font-size: 2.5em;
+            margin-bottom: 20px;
+            color: #2874f0; /* Flipkart blue */
+            font-weight: bold;
+        }
+
+        .zebra-text {
+            font-size: 2em;
+            margin-bottom: 30px;
+            color: #ff9f00; /* Flipkart orange */
+            font-weight: bold;
+        }
+
+        button {
+            width: 220px;
+            padding: 12px;
+            font-size: 1.2em;
+            margin: 15px 0;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            background-color: #2874f0; /* Flipkart blue for buttons */
+            color: #ffffff;
+            transition: all 0.3s ease;
+        }
+
+        button:hover {
+            background-color: #ff9f00; /* Flipkart orange on hover */
+            color: #ffffff;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2); /* Add hover shadow */
+        }
+
+        a {
+            text-decoration: none; /* Remove underline from links */
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <h1 class="welcome-text">WELCOME TO SHOPY</h1>
+        <a href="{% url 'login' %}">
+            <button>Log In</button>
+        </a>
+        <a href="{% url 'signup' %}">
+            <button>Sign Up</button>
+        </a>
+    </div>
+</body>
+</html>

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Order Confirmation</title>
+    <style>
+        body {
+            background-color: white; /* Changed background color to white */
+            color: black; /* Changed text color to black */
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+            text-align: center;
+        }
+        h1 {
+            font-size: 2em;
+            margin-bottom: 20px;
+            color: green; /* Highlighted the header in green */
+        }
+        p {
+            font-size: 1.2em;
+            margin-bottom: 30px;
+            color: black; /* Ensures readability on the white background */
+        }
+        .tick-circle {
+            width: 100px;
+            height: 100px;
+            background-color: green;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            font-size: 3em;
+            margin: 20px auto;
+        }
+        .btn {
+            background-color: green;
+            color: white;
+            padding: 10px 20px;
+            text-align: center;
+            font-size: 16px;
+            cursor: pointer;
+            text-decoration: none; /* Remove underline */
+            display: inline-block;
+            border-radius: 5px; /* Added rounded corners for a modern look */
+        }
+        .btn:hover {
+            background-color: darkgreen;
+        }
+    </style>
+</head>
+<body>
+    <h1>Order Placed Successfully!</h1>
+    
+    <!-- Green Tick Circle -->
+    <div class="tick-circle">✔</div>
+    
+    <p>Thank you for your order. You will receive a confirmation email shortly.</p>
+    
+    <a href="{% url 'home_page' %}" class="btn">Go back to Home</a>
+</body>
+</html>

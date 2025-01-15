@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>My Orders</title>
+    <style>
+        body {
+            background-color: #121212;
+            color: white;
+            font-family: Arial, sans-serif;
+            margin: 0;
+            padding: 20px;
+        }
+        h2 {
+            text-align: center;
+            color: #ff6f00;
+            font-size: 28px;
+            margin-bottom: 30px;
+        }
+        .order {
+            margin: 20px 0;
+            border: 1px solid #ddd;
+            padding: 15px;
+            border-radius: 8px;
+            background-color: rgba(255, 255, 255, 0.1);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+        }
+        .order h4 {
+            margin: 0;
+            color: #ffd700;
+            font-size: 22px;
+        }
+        .order p {
+            margin: 5px 0;
+        }
+        .order img {
+            max-width: 100px; /* Set a max width for the image */
+            height: auto; /* Maintain aspect ratio */
+            margin-right: 15px; /* Space between image and text */
+            border-radius: 5px; /* Smooth the image edges */
+        }
+        .order-details {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+        .order-details div {
+            display: flex;
+            flex-direction: column;
+            margin-left: 10px;
+        }
+        .order-details p {
+            color: #bbb;
+        }
+        .order-item {
+            display: flex;
+            align-items: center;
+            margin-top: 15px;
+        }
+        .order-item div {
+            display: flex;
+            flex-direction: column;
+        }
+        .no-orders {
+            text-align: center;
+            color: #ff6f00;
+            font-size: 18px;
+        }
+    </style>
+</head>
+<body>
+    <h2>My Orders</h2>
+    <div>
+        {% if orders %}
+            {% for order in orders %}
+                <div class="order">
+                    <h4>Order ID: {{ order.id }}</h4>
+                    <p>Order Date: {{ order.order_date|date:"F j, Y, g:i a" }}</p>
+                    <p>Total Price: ₹{{ order.total_price }}</p>
+                    <h5>Items:</h5>
+                    {% for item in order.items.all %}
+                        <div class="order-details">
+                            <img src="{{ item.product.image.url }}" alt="{{ item.product.name }} image">
+                            <div>
+                                <p><strong>Product:</strong> {{ item.product.name }}</p>
+                                <p><strong>Quantity:</strong> {{ item.quantity }}</p>
+                                <p><strong>Price:</strong> ₹{{ item.price }}</p>
+                            </div>
+                        </div>
+                    {% endfor %}
+                </div>
+            {% endfor %}
+        {% else %}
+            <p class="no-orders">No orders found.</p>
+        {% endif %}
+    </div>
+</body>
+</html>

@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Categories</title>
+    <style>
+        /* Global Styles */
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f4f4f4;
+            margin: 0;
+            padding: 0;
+            text-align: center;
+        }
+
+        h1 {
+            margin-top: 20px;
+            color: #333;
+        }
+
+        h2 {
+            color: #555;
+        }
+
+        /* Category List Styling */
+        ul {
+            list-style-type: none;
+            padding: 0;
+            margin-top: 20px;
+        }
+
+        li {
+            margin: 10px 0;
+            font-size: 18px;
+            background-color: #fff;
+            padding: 10px;
+            border-radius: 5px;
+            box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+            transition: background-color 0.3s ease, transform 0.3s ease;
+        }
+
+        li:hover {
+            background-color: #e6f7e6;
+            transform: scale(1.05);
+        }
+
+        /* Link Styling */
+        a {
+            text-decoration: none;
+            color: #333;
+            font-weight: bold;
+        }
+
+        a:hover {
+            color: #009900;
+        }
+    </style>
+</head>
+<body>
+    <h1>Categories</h1>
+    <h2>Select a Category:</h2>
+    <ul>
+        {% if categories %}
+            {% for category in categories %}
+                <li><a href="{% url 'brand_selection' category.id %}">{{ category.name }}</a></li>
+            {% endfor %}
+        {% else %}
+            <li>No categories available.</li>
+        {% endif %}
+    </ul>
+</body>
+</html>
